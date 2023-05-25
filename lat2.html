@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tabel menggunakan JavaScript dan Bootstrap</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Data Mahasiswa Praktikan</h2>
+    <div id="tableContainer"></div>
+  </div>
+<script>
+    var konfirmasi = confirm("Apakah Anda Praktikan PPW1?");
+    if (konfirmasi){
+        var nama = prompt("Masukkan Nama Anda");
+        var nim = prompt("Masukkan NIM Anda");
+        var angkatan = prompt("Masukkan Angkatan Anda");
+    } else {
+        alert("Anda Bukan Praktikan PPW1, anda tidak boleh masuk!");
+        window.location.reload();
+        }
+    function createTable() {
+      const tableContainer = document.getElementById("tableContainer");
+
+      const table = document.createElement("table");
+      table.classList.add("table", "table-striped");
+
+      const thead = document.createElement("thead");
+      const tr = document.createElement("tr");
+
+      const headers = ["No", "Nama", "NIM", "Angkatan"];
+
+      for (let i = 0; i < headers.length; i++) {
+        const th = document.createElement("th");
+        th.textContent = headers[i];
+        tr.appendChild(th);
+      }
+      thead.appendChild(tr);
+      table.appendChild(thead);
+      const tbody = document.createElement("tbody");
+      
+      const mahasiswa = [
+        { nama, nim, angkatan}
+      ];
+
+      for (let i = 0; i < mahasiswa.length; i++) {
+        const tr = document.createElement("tr");
+        const tdNo = document.createElement("td");
+        tdNo.textContent = (i + 1).toString();
+        tr.appendChild(tdNo);
+
+        const tdNama = document.createElement("td");
+        tdNama.textContent = mahasiswa[i].nama;
+        tr.appendChild(tdNama);
+
+        const tdNIM = document.createElement("td");
+        tdNIM.textContent = mahasiswa[i].nim;
+        tr.appendChild(tdNIM);
+
+        const tdAngkatan = document.createElement("td");
+        tdAngkatan.textContent = mahasiswa[i].angkatan;
+        tr.appendChild(tdAngkatan);
+
+        tbody.appendChild(tr);
+      }
+
+      table.appendChild(tbody);
+      tableContainer.appendChild(table);
+    }
+
+    createTable();
+  </script>
+</body>
+</html>
