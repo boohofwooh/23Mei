@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        input{
+            width: 40px;
+            background-color: white;
+            border: none;
+        }
+        td{
+            padding: 10px;
+        }
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <table style="background-color: rgba(241, 252, 255, 0.947); margin: auto;">
+        <tr>
+          <th colspan="3"><h3 style="font-weight: bolder; color: orange;">ITEMS YOU CONSUME DAILY<br></h3>
+        <p style="font-weight: normal;">Please enter the quantity for <b>each day</b></p></th>
+        </tr>
+        <tr>
+          <td style="padding-right: 220px;"></td>
+          <td>DAY</td>
+          <td>YEAR</td>
+        </tr>
+        <tr>
+          <td style="padding-right: 20px;">Plastic Bottles</td>
+          <td><input type="text" class="input-field" data-type="plasticBottles" value="0"></td>
+          <td class="total"></td>
+        </tr>
+        <tr>
+          <td>Plastic Cups</td>
+          <td><input type="text" class="input-field" data-type="plasticCups" value="0"></td>
+          <td class="total"></td>
+        </tr>
+        <tr>
+          <td>Straws</td>
+          <td><input type="text" class="input-field" data-type="straws" value="0"></td>
+          <td class="total"></td>
+        </tr>
+        <tr>
+          <td>Cotton Swabs</td>
+          <td><input type="text" class="input-field" data-type="cottonSwabs" value="0"></td>
+          <td class="total"></td>
+        </tr>
+        <tr>
+          <td>Cigarette Butts</td>
+          <td><input type="text" class="input-field" data-type="cigaretteButts" value="0"></td>
+          <td class="total"></td>
+        </tr>
+        <tr>
+          <td>Plastic Resealable Bags</td>
+          <td><input type="text" class="input-field" data-type="plasticResealableBags" value="0"></td>
+          <td class="total"></td>
+        </tr>
+        <tr>
+          <td>Plastic Cling Wrap</td>
+          <td><input type="text" class="input-field" data-type="plasticClingWrap" value="0"></td>
+          <td class="total"></td>
+        </tr>
+        <tr>
+          <td>Plastic Silverware</td>
+          <td><input type="text" class="input-field" data-type="plasticSilverware" value="0"></td>
+          <td class="total"></td>
+        </tr>
+        <tr>
+          <td>Plastic Stirrers</td>
+          <td><input type="text" class="input-field" data-type="plasticStirrers" value="0"></td>
+          <td class="total"></td>
+        </tr>
+        <tr>
+          <td>Food Containers</td>
+          <td><input type="text" class="input-field" data-type="foodContainers" value="0"></td>
+          <td class="total"></td>
+        </tr>
+      </table>
+      <div style="padding-left: 450px;">
+            <p style="font-weight: bold;">Current Yearly Consumption&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: orange;" id="totalSemua"></span></p>
+      </div>
+      
+      <script>
+        const inputFields = document.querySelectorAll('.input-field');
+        const totalCells = document.querySelectorAll('.total');
+        const totalSemua = document.getElementById('totalSemua');
+      
+        inputFields.forEach((input) => {
+          input.addEventListener('input', calculate);
+        });
+      
+        function calculate() {
+          let result = 0;
+      
+          inputFields.forEach((input, index) => {
+
+            const value = parseFloat(input.value);
+            totalCells[index].textContent = value * 365;
+            result += value * 365;
+          });
+      
+          totalSemua.textContent = result;
+        }
+      
+        // Reset all values on page load
+        window.onload = function () {
+          totalCells.forEach((cell) => {
+            cell.textContent = 0;
+          });
+      
+          totalSemua.textContent = 0;
+        };
+      </script>
+</body>
+</html>
